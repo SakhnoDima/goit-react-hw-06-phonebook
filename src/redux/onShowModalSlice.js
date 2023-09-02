@@ -1,12 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = false;
+const initialState = { onShow: false };
 
 const modalShowSlice = createSlice({
   name: 'modalShow',
   initialState: initialState,
   reducers: {
-    modalShowToggle(state) {},
+    modalShowToggle(state) {
+      state.onShow = !state.onShow;
+    },
   },
 });
 

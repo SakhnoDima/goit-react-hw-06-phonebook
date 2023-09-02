@@ -1,28 +1,33 @@
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import PropTypes from 'prop-types';
+
+import { modalShowToggle } from 'redux/onShowModalSlice';
+import { useDispatch } from 'react-redux';
+
 import { Backdrop, ModalBody } from './Modal.styles';
 
 const modalRoot = document.querySelector('#modal-root');
 
-export const Modal = ({ onCloses, children }) => {
+export const Modal = ({ children }) => {
+  const dispatch = useDispatch();
+
   useEffect(() => {
     const handleKeyDown = event => {
       // закрив по Escspe
       if (event.code === 'Escape') {
-        onCloses();
+        dispatch(modalShowToggle());
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [onCloses]);
+  }, [dispatch]);
 
   const handleBackDropClick = event => {
     // закрив по бекдроп
     if (event.target === event.currentTarget) {
-      onCloses();
+      dispatch(modalShowToggle());
     }
   };
 
@@ -32,7 +37,4 @@ export const Modal = ({ onCloses, children }) => {
     </Backdrop>,
     modalRoot
   );
-};
-Modal.propTypes = {
-  onCloses: PropTypes.func.isRequired,
 };

@@ -4,7 +4,7 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
 import contactsReducer from './contactsSlice';
 import filterReducer from './filterSlice';
-//import modalShowReducer from './onShowModalSlice';
+import modalShowReducer from './onShowModalSlice';
 
 const persistConfig = {
   key: 'cont',
@@ -13,11 +13,16 @@ const persistConfig = {
 
 const persistedContacts = persistReducer(
   persistConfig,
-  combineReducers({ contacts: contactsReducer, filter: filterReducer })
+  combineReducers({
+    contacts: contactsReducer,
+    filter: filterReducer,
+    modalShow: modalShowReducer,
+  })
 );
 
 export const store = configureStore({
   reducer: persistedContacts,
+
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: false,
