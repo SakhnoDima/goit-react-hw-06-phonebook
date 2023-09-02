@@ -2,6 +2,9 @@ import { nanoid } from 'nanoid';
 import { Formik, ErrorMessage } from 'formik';
 import { object, string } from 'yup';
 
+import { useDispatch, useSelector } from 'react-redux';
+import { addContact } from 'redux/contactsSlice';
+
 import { Label, Button, Forma, Input, Error } from './Form.styles';
 
 const schema = object({
@@ -13,22 +16,32 @@ const schema = object({
 });
 
 const Forms = ({ onSubmit }) => {
+  const dispatch = useDispatch();
+  const contacts = useSelector(state => state.contacts);
   const state = {
     name: '',
     number: '',
   };
-
   const idNameForm = nanoid();
   const idTelForm = nanoid();
 
   // === сабміт форми ===
-
   const handleSubmit = (values, { resetForm }) => {
-    onSubmit(values);
+    const { name, number } = values;
+    // ===  перевірка на вже існуюче ім'я ===
+    const includeName = contacts.some(
+      contact => contact.name.toLowerCase().trim() === name.toLowerCase().trim()
+    );
+    if (includeName) {
+      alert(`${name} Is already in contacts`);
+      return;
+    }
+    // === додавання до списку крнтакту ===
+    const updateContacts = { id: nanoid(2), name, number };
+    dispatch(addContact(updateContacts)); //!add
+
     resetForm();
   };
-
-  // === рендер ===
 
   return (
     <>
