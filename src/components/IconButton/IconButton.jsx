@@ -5,9 +5,7 @@ import { Button } from './IconButton.styles';
 
 export const IconButton = ({ children, onClick }) => {
   return (
-    <IconContext.Provider
-      value={{ color: 'black', size: '20px', hover: 'red' }}
-    >
+    <IconContext.Provider value={{ size: '20px', hover: 'red' }}>
       <Button type="button" onClick={onClick}>
         {children}
       </Button>

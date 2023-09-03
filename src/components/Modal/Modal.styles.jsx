@@ -6,7 +6,8 @@ export const Backdrop = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: ${({ theme }) => theme.colors.light};
+  background-color: var(--dark-background);
+  color: var(--dark-text);
 `;
 
 export const ModalBody = styled.div`
@@ -18,7 +19,8 @@ export const ModalBody = styled.div`
   max-width: ${({ theme }) => theme.spacing(200)};
   width: 100%;
   padding: ${({ theme }) => theme.spacing(4)};
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: var(--dark-background);
+  color: var(--dark-text);
   border-radius: ${({ theme }) => theme.spacing(1)};
-  box-shadow: ${({ theme }) => theme.shadows.medium};
+  box-shadow: ${({ theme }) => theme.shadows.regular};
 `;

@@ -4,9 +4,10 @@ export const MainPage = styled.div`
   margin: 40px auto;
   padding: 16px;
   width: ${({ theme }) => theme.spacing(200)};
-  background-color: rgba(253, 253, 253, 0.862);
   box-shadow: ${({ theme }) => theme.shadows.regular};
   border-radius: ${({ theme }) => theme.spacing(1)};
+  background-color: var(--dark-background);
+  color: var(--dark-text);
 `;
 export const Button = styled.button`
   display: block;
@@ -16,10 +17,17 @@ export const Button = styled.button`
   font: inherit;
   cursor: pointer;
   border-radius: ${({ theme }) => theme.spacing(1)};
-  border: 1px solid ${({ theme }) => theme.colors.dark};
-  color: ${({ theme }) => theme.colors.dark};
+  border: 1px solid var(--button-border);
+  color: var(--light-text);
+  background-color: var(--button-background);
   font-size: ${({ theme }) => theme.fontSizes.medium};
   &:hover {
     background-color: ${({ theme }) => theme.colors.accent};
   }
+`;
+export const Title = styled.h1`
+  color: var(--light-text);
+`;
+export const Title2 = styled.h1`
+  color: var(--light-text);
 `;

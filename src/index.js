@@ -9,6 +9,8 @@ import { GlobalStyle } from './components/styles/GlobalStyle.jsx';
 import { ThemeProvider } from 'styled-components';
 import { theme } from './components/styles/theme.js';
 
+import './index.css';
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>

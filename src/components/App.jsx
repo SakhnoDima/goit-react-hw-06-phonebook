@@ -4,9 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import Forms, { IconButton, Modal } from './Form';
 import { Contacts } from './Contacts';
 import Filter from './Filter';
-import { MainPage, Button } from './styles/App.styles';
+import { MainPage, Button, Title, Title2 } from './styles/App.styles';
 import { modalShowToggle } from 'redux/onShowModalSlice';
 import { getModalShow } from 'redux/selectors';
+import { ThemeButton } from './ThemButtton/ThemeButton';
 
 export const App = () => {
   const showModal = useSelector(getModalShow);
@@ -14,7 +15,8 @@ export const App = () => {
 
   return (
     <MainPage>
-      <h1 style={{ textAlign: 'center' }}>Phonebook</h1>
+      <ThemeButton />
+      <Title style={{ textAlign: 'center' }}>Phonebook</Title>
       <Forms />
       <Button
         type="button"
@@ -34,7 +36,7 @@ export const App = () => {
             >
               <AiOutlineCloseCircle />
             </IconButton>
-            <h2 style={{ textAlign: 'center' }}>Contacts</h2>
+            <Title2 style={{ textAlign: 'center' }}>Contacts</Title2>
             <Filter />
             <Contacts />
           </>

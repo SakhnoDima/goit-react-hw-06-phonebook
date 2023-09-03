@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 
+export const Div = styled.div`
+  background-color: var(--dark-background);
+  color: var(--dark-text);
+`;
+
 export const List = styled.ul`
   margin: 16px auto;
   display: flex;
@@ -8,13 +13,14 @@ export const List = styled.ul`
   width: ${({ theme }) => theme.spacing(100)};
   padding: ${({ theme }) => theme.spacing(3)};
   border-radius: ${({ theme }) => theme.spacing(1)};
-  background-color: rgba(253, 253, 253, 0.862);
+  background-color: var(--dark-background);
+  color: var(--dark-text);
   box-shadow: ${({ theme }) => theme.shadows.regular};
   list-style: none;
 `;
 
 export const Item = styled.li`
-  border: 1px solid ${({ theme }) => theme.colors.dark};
+  border: 1px solid var(--button-border);
   padding: ${({ theme }) => theme.spacing(2)};
   border-radius: ${({ theme }) => theme.spacing(1)};
   margin-bottom: ${({ theme }) => theme.spacing(1)};
@@ -22,6 +28,7 @@ export const Item = styled.li`
   align-items: center;
   justify-content: space-between;
   font-size: ${({ theme }) => theme.fontSizes.medium};
+  color: var(--light-text);
 `;
 
 export const Button = styled.button`
@@ -29,7 +36,7 @@ export const Button = styled.button`
   font: inherit;
   cursor: pointer;
   border-radius: ${({ theme }) => theme.spacing(1)};
-  border: 1px solid ${({ theme }) => theme.colors.dark};
+  border: 1px solid var(--button-border);
   &:hover {
     background-color: ${({ theme }) => theme.colors.accent};
   }

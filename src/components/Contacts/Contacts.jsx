@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getContacts, getFilter } from 'redux/selectors';
 
 import { RiContactsBook2Fill, RiDeleteBin5Line } from 'react-icons/ri';
-import { Button, Error, Item, List } from './Contacts.styles';
+import { Button, Div, Error, Item, List } from './Contacts.styles';
 import { removeContact } from 'redux/contactsSlice';
 
 export const Contacts = () => {
@@ -27,7 +27,7 @@ export const Contacts = () => {
   };
 
   return (
-    <div>
+    <Div>
       {contacts.length > 0 ? (
         <List>
           {filteredContacts.map(({ name, number, id }) => {
@@ -45,6 +45,6 @@ export const Contacts = () => {
       ) : (
         <Error>Contacts not found</Error>
       )}
-    </div>
+    </Div>
   );
 };

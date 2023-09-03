@@ -5,6 +5,7 @@ import storage from 'redux-persist/lib/storage'; // defaults to localStorage for
 import contactsReducer from './contactsSlice';
 import filterReducer from './filterSlice';
 import modalShowReducer from './onShowModalSlice';
+import toggleThemeReducer from './theme';
 
 const persistConfig = {
   key: 'cont',
@@ -18,6 +19,7 @@ const persistedContacts = persistReducer(
     filter: filterReducer,
     modalShow: modalShowReducer,
     contacts: contactsReducer,
+    theme: toggleThemeReducer,
   })
 );
 
