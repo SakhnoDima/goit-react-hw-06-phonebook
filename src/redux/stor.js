@@ -9,14 +9,15 @@ import modalShowReducer from './onShowModalSlice';
 const persistConfig = {
   key: 'cont',
   storage,
+  blacklist: ['filter'],
 };
 
 const persistedContacts = persistReducer(
   persistConfig,
   combineReducers({
-    contacts: contactsReducer,
     filter: filterReducer,
     modalShow: modalShowReducer,
+    contacts: contactsReducer,
   })
 );
 
