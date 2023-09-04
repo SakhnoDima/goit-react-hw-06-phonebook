@@ -1,33 +1,48 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from './ThemeButton.styles';
-import { useDispatch } from 'react-redux';
-import { themeToggle } from 'redux/theme';
-import { useSelector } from 'react-redux';
-import { getTheme } from 'redux/selectors';
 
 import { setTheme } from 'components/helpers/themtoggle';
 
 export const ThemeButton = () => {
-  const dispatch = useDispatch();
-  const theme = useSelector(getTheme);
+  const [togClass, setTogClass] = useState('dark');
+  let theme = localStorage.getItem('theme');
+
+  const handleOnClick = () => {
+    if (localStorage.getItem('theme') === 'theme-dark') {
+      setTheme('theme-light');
+      setTogClass('light');
+    } else {
+      setTheme('theme-dark');
+      setTogClass('dark');
+    }
+  };
 
   useEffect(() => {
-    if (theme) {
-      setTheme('theme-dark');
-    } else {
-      setTheme('theme-light');
+    if (localStorage.getItem('theme') === 'theme-dark') {
+      setTogClass('dark');
+    } else if (localStorage.getItem('theme') === 'theme-light') {
+      setTogClass('light');
     }
-    setTheme(theme);
-  });
-
+  }, [theme]);
   return (
     <div className="App" style={{ transition: `all 300ms ease` }}>
       <Button checked={theme}>
-        <input
-          type="checkbox"
-          checked={theme}
-          onChange={() => dispatch(themeToggle())}
-        />
+        {togClass === 'light' ? (
+          <input
+            type="checkbox"
+            id="toggle"
+            className="toggle--checkbox"
+            onClick={handleOnClick}
+            checked
+          />
+        ) : (
+          <input
+            type="checkbox"
+            id="toggle"
+            className="toggle--checkbox"
+            onClick={handleOnClick}
+          />
+        )}
         <span />
       </Button>
     </div>

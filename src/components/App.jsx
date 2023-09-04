@@ -1,19 +1,24 @@
 import { AiOutlineCloseCircle } from 'react-icons/ai';
-import { useDispatch, useSelector } from 'react-redux';
 
 import Forms, { IconButton, Modal } from './Form';
 import { Contacts } from './Contacts';
 import Filter from './Filter';
 import { MainPage, Button, Title, Title2, Header } from './styles/App.styles';
-import { modalShowToggle } from 'redux/onShowModalSlice';
-import { getModalShow } from 'redux/selectors';
+
 import { ThemeButton } from './ThemButtton/ThemeButton';
 import TotalContacts from './TotalContacts/TotalContacts';
+import { useEffect, useState } from 'react';
+import { keepTheme } from './helpers/themtoggle';
 
 export const App = () => {
-  const showModal = useSelector(getModalShow);
-  const dispatch = useDispatch();
+  const [showModal, setModalShow] = useState(false);
 
+  useEffect(() => {
+    keepTheme();
+  });
+  const modalToggle = () => {
+    setModalShow(prev => !prev);
+  };
   return (
     <MainPage>
       <Header>
@@ -22,22 +27,13 @@ export const App = () => {
       </Header>
       <Title style={{ textAlign: 'center' }}>Phonebook</Title>
       <Forms />
-      <Button
-        type="button"
-        onClick={() => {
-          dispatch(modalShowToggle());
-        }}
-      >
+      <Button type="button" onClick={modalToggle}>
         All Cntacts
       </Button>
       {showModal && (
-        <Modal>
+        <Modal onCloses={modalToggle}>
           <>
-            <IconButton
-              onClick={() => {
-                dispatch(modalShowToggle());
-              }}
-            >
+            <IconButton onClick={modalToggle}>
               <AiOutlineCloseCircle />
             </IconButton>
             <Title2 style={{ textAlign: 'center' }}>Contacts</Title2>
