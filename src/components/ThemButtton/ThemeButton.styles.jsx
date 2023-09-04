@@ -26,6 +26,6 @@ export const Button = styled.div`
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    transition: all ${props => `${props.transition}ms`} ease;
+    transition: all 300ms ease;
   }
 `;

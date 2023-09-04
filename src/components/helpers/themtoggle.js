@@ -1,18 +1,16 @@
-//const KEY_LS = 'theme';
+export const KEY_LS = 'theme';
 
 export const setTheme = themeName => {
-  localStorage.setItem('theme', themeName);
+  localStorage.setItem(KEY_LS, themeName);
   document.documentElement.className = themeName;
 };
 
 export const keepTheme = () => {
-  if (localStorage.getItem('theme')) {
-    if (localStorage.getItem('theme') === 'theme-dark') {
-      setTheme('theme-dark');
-    } else if (localStorage.getItem('theme') === 'theme-light') {
-      setTheme('theme-light');
-    }
+  const theme = localStorage.getItem(KEY_LS);
+
+  if (theme) {
+    setTheme(theme === 'theme-dark' ? 'theme-dark' : 'theme-light');
   } else {
-    setTheme('theme-dark');
+    setTheme('theme-light');
   }
 };
