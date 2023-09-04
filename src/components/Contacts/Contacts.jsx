@@ -22,10 +22,6 @@ export const Contacts = () => {
   const filter = useSelector(getFilter);
   const filteredContacts = filterContacts(contacts, filter);
 
-  const handleDelete = () => {
-    dispatch(removeContact(filteredContacts.id));
-  };
-
   return (
     <Div>
       {contacts.length > 0 ? (
@@ -35,7 +31,7 @@ export const Contacts = () => {
               <Item key={id}>
                 <RiContactsBook2Fill />
                 {name} : {number}
-                <Button onClick={handleDelete}>
+                <Button onClick={() => dispatch(removeContact(id))}>
                   <RiDeleteBin5Line />
                 </Button>
               </Item>
