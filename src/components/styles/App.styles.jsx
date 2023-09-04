@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 
+export const Header = styled.header`
+  display: flex;
+  justify-content: space-between;
+`;
+
 export const MainPage = styled.div`
   margin: 40px auto;
   padding: 16px;
